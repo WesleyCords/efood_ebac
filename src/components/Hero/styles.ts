@@ -4,15 +4,23 @@ import collors from '../../styles/variable'
 
 import fundoHero from '../../assets/image/fundo.png'
 
-export const HeroContainer = styled.section`
+type StyledProps = {
+  view?: boolean
+}
+
+export const HeroContainer = styled.section<StyledProps>`
   width: 100%;
-  height: 384px;
+  height: ${(props) => (props.view ? '383px' : '186px')};
   padding: 40px 0;
   background-image: url(${fundoHero});
   display: flex;
-  justify-content: space-between;
+  justify-content: ${(props) =>
+    props.view ? 'space-between' : 'space-evenly'};
   align-items: center;
-  flex-direction: column;
+  flex-direction: ${(props) => (props.view ? 'column' : 'row')};
+  color: ${collors.pinkHigh};
+  font-size: 18px;
+  font-weight: 500;
 
   img {
     width: 125px;
@@ -24,5 +32,4 @@ export const Title = styled.h1`
   font-weight: 900;
   width: 524px;
   text-align: center;
-  color: ${collors.pinkHigh};
 `

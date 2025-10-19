@@ -1,11 +1,15 @@
+import Item from '../Item'
 import { ProductsContainer } from './styles'
+
+const tags = ['Novo', 'Promoção']
 
 const Products = () => {
   return (
     <ProductsContainer>
-      <div>ola</div>
-      <div>ola</div>
-      <div></div>
+      <Item tags={tags} />
+      <Item tags={tags} />
+      <Item tags={tags} />
+      <Item />
     </ProductsContainer>
   )
 }
