@@ -25,6 +25,13 @@ export const HeroContainer = styled.section<StyledProps>`
   img {
     width: 125px;
   }
+
+  span {
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 `
 
 export const Title = styled.h1`

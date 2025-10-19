@@ -1,17 +1,12 @@
-import Item from '../Item'
 import { ProductsContainer } from './styles'
 
-const tags = ['Novo', 'Promoção']
+type ProductsProps = {
+  children: React.ReactNode
+  gridThree?: boolean
+}
 
-const Products = () => {
-  return (
-    <ProductsContainer>
-      <Item tags={tags} />
-      <Item tags={tags} />
-      <Item tags={tags} />
-      <Item />
-    </ProductsContainer>
-  )
+const Products = ({ children, gridThree }: ProductsProps) => {
+  return <ProductsContainer gridThree={gridThree}>{children}</ProductsContainer>
 }
 
 export default Products

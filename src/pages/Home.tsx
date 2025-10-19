@@ -1,5 +1,5 @@
-import Footer from '../components/Footer'
 import Hero from '../components/Hero'
+import Item from '../components/Item'
 import Products from '../components/Porducts'
 import { Container } from '../styles'
 
@@ -8,9 +8,12 @@ const Home = () => {
     <>
       <Hero view />
       <Container>
-        <Products />
+        <Products>
+          <Item tags={['Novo', 'Promoção']} />
+          <Item tags={['Novo', 'Promoção']} />
+          <Item tags={['Novo', 'Promoção']} />
+        </Products>
       </Container>
-      <Footer />
     </>
   )
 }

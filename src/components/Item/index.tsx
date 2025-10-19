@@ -19,7 +19,12 @@ const Item = ({ tags }: ItemProps) => {
     <ItemContainer>
       <img src={prato} alt="Prato 1" />
       <Tags>
-        {tags && tags.map((tag, index) => <Tag key={index}>{tag}</Tag>)}
+        {tags &&
+          tags.map((tag, index) => (
+            <Tag variant="primary" key={index}>
+              {tag}
+            </Tag>
+          ))}
       </Tags>
       <div>
         <ItemTitle>
@@ -35,7 +40,7 @@ const Item = ({ tags }: ItemProps) => {
           rápida, embalagens cuidadosas e qualidade garantida.Experimente o
           Japão sem sair do lar com nosso delivery!
         </Descriprion>
-        <Tag>Saiba mais</Tag>
+        <Tag variant="primary">Saiba mais</Tag>
       </div>
     </ItemContainer>
   )

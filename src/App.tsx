@@ -1,11 +1,13 @@
-import Home from './pages/Home'
+import Footer from './components/Footer'
+import Perfil from './pages/Perfil'
 import { GlobalStyled } from './styles'
 
 function App() {
   return (
     <>
       <GlobalStyled />
-      <Home />
+      <Perfil />
+      <Footer />
     </>
   )
 }
