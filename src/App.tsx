@@ -1,12 +1,13 @@
+import { RouterProvider } from 'react-router-dom'
 import Footer from './components/Footer'
-import Perfil from './pages/Perfil'
 import { GlobalStyled } from './styles'
+import router from './routes'
 
 function App() {
   return (
     <>
       <GlobalStyled />
-      <Perfil />
+      <RouterProvider router={router} />
       <Footer />
     </>
   )

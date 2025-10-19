@@ -15,10 +15,6 @@ export const ItemContainer = styled.div`
     width: 100%;
     height: 217px;
   }
-
-  div {
-    padding: 0 8px 8px 8px;
-  }
 `
 
 export const ItemTitle = styled.div`
@@ -55,4 +51,8 @@ export const Tags = styled.div`
   right: 8px;
   display: flex;
   gap: 8px;
+`
+
+export const Dados = styled.div`
+  padding: 0 8px 8px 8px;
 `

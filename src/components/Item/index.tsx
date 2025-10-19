@@ -1,4 +1,5 @@
-import prato from '../../assets/image/prato.png'
+import { useNavigate } from 'react-router-dom'
+
 import estrela from '../../assets/image/estrela.svg'
 import {
   Availation,
@@ -7,41 +8,52 @@ import {
   ItemTitle,
   Title,
   Tags,
+  Dados,
 } from './styles'
-import Tag from '../Tag'
+import Tag from '../Button'
 
 type ItemProps = {
-  tags?: string[]
+  dados: {
+    title: string
+    description: string
+    imageSrc: string
+    note: number
+    tags: string[]
+  }
 }
 
-const Item = ({ tags }: ItemProps) => {
+const Item = ({ dados }: ItemProps) => {
+  const dadosArray = Array.isArray(dados) ? dados : [dados]
+  const navigate = useNavigate()
+
   return (
     <ItemContainer>
-      <img src={prato} alt="Prato 1" />
-      <Tags>
-        {tags &&
-          tags.map((tag, index) => (
-            <Tag variant="primary" key={index}>
-              {tag}
+      {dadosArray.map((item, index) => (
+        <div className="key" key={index}>
+          <img src={item.imageSrc} alt="Prato 1" />
+          <Tags>
+            {item.tags &&
+              item.tags.map((tag: string[], index1: number) => (
+                <Tag variant="primary" key={index1}>
+                  {tag}
+                </Tag>
+              ))}
+          </Tags>
+          <Dados>
+            <ItemTitle>
+              <Title>{item.title}</Title>
+              <Availation>
+                {item.note}
+                <img src={estrela} alt="Avaliacao" />
+              </Availation>
+            </ItemTitle>
+            <Descriprion>{item.description}</Descriprion>
+            <Tag variant="primary" evento={() => navigate('/perfil')}>
+              Saiba mais
             </Tag>
-          ))}
-      </Tags>
-      <div>
-        <ItemTitle>
-          <Title>Prato 1</Title>
-          <Availation>
-            4.9
-            <img src={estrela} alt="Avaliacao" />
-          </Availation>
-        </ItemTitle>
-        <Descriprion>
-          Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis
-          frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega
-          rápida, embalagens cuidadosas e qualidade garantida.Experimente o
-          Japão sem sair do lar com nosso delivery!
-        </Descriprion>
-        <Tag variant="primary">Saiba mais</Tag>
-      </div>
+          </Dados>
+        </div>
+      ))}
     </ItemContainer>
   )
 }
