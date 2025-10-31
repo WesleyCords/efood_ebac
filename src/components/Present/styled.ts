@@ -6,6 +6,12 @@ export const PresentContainer = styled.div`
   position: relative;
   color: #fff;
 
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   &::before {
     content: '';
     display: block;

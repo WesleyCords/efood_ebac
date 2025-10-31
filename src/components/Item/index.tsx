@@ -12,43 +12,52 @@ import {
 } from './styles'
 import Tag from '../Button'
 
+import type { Restaurant } from '../../types'
+
 type ItemProps = {
-  dados: {
-    title: string
-    description: string
-    imageSrc: string
-    note: number
-    tags: string[]
-  }
+  dados: Restaurant | Restaurant[]
 }
 
 const Item = ({ dados }: ItemProps) => {
   const dadosArray = Array.isArray(dados) ? dados : [dados]
   const navigate = useNavigate()
 
+  const setTags = (tipo: string, destacado: boolean) => {
+    const tags = []
+    if (destacado) {
+      tags.push('Destaque da semana')
+    }
+    tags.push(tipo)
+    return tags
+  }
+
+  if (dadosArray.length === 0) {
+    return <p>Carregando...</p>
+  }
+
   return (
     <ItemContainer>
-      {dadosArray.map((item, index) => (
-        <div className="key" key={index}>
-          <img src={item.imageSrc} alt="Prato 1" />
+      {dadosArray.map((item) => (
+        <div className="key" key={item.id}>
+          <img src={item.capa} alt="Prato 1" />
           <Tags>
-            {item.tags &&
-              item.tags.map((tag: string[], index1: number) => (
-                <Tag variant="primary" key={index1}>
-                  {tag}
-                </Tag>
-              ))}
+            {setTags(item.tipo, item.destacado).map((tag) => (
+              <Tag variant="primary">{tag}</Tag>
+            ))}
           </Tags>
           <Dados>
             <ItemTitle>
-              <Title>{item.title}</Title>
+              <Title>{item.titulo}</Title>
               <Availation>
-                {item.note}
+                {item.avaliacao}
                 <img src={estrela} alt="Avaliacao" />
               </Availation>
             </ItemTitle>
-            <Descriprion>{item.description}</Descriprion>
-            <Tag variant="primary" evento={() => navigate('/perfil')}>
+            <Descriprion>{item.descricao}</Descriprion>
+            <Tag
+              variant="primary"
+              evento={() => navigate(`/perfil/${item.id}`)}
+            >
               Saiba mais
             </Tag>
           </Dados>

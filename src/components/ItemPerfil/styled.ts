@@ -11,6 +11,13 @@ export const ItemContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   gap: 8px;
+
+  img {
+    width: 100%;
+    height: 167px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
 `
 
 export const Description = styled.p`

@@ -9,7 +9,7 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: '/perfil',
+    path: '/perfil/:id',
     element: <Perfil />,
   },
 ])

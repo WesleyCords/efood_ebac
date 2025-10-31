@@ -1,14 +1,18 @@
 import { Details, PresentContainer } from './styled'
 
-import fundoImage from '../../assets/image/background.png'
+type PresentProps = {
+  capa: string
+  nome: string
+  tipo: string
+}
 
-const Present = () => {
+const Present = ({ capa, nome, tipo }: PresentProps) => {
   return (
     <PresentContainer>
-      <img src={fundoImage} alt="" />
+      <img src={capa} alt="" />
       <Details>
-        <h3>Italiana</h3>
-        <h2>La Dolce Vita Trattoria</h2>
+        <h3>{tipo}</h3>
+        <h2>{nome}</h2>
       </Details>
     </PresentContainer>
   )
