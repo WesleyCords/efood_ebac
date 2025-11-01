@@ -15,7 +15,7 @@ export const Button = styled.button<TagProps>`
   border: none;
   cursor: pointer;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: bold;
   display: ${(props) =>
     props.variant === 'primary' ? 'inline-block' : 'block'};
 `

@@ -14,6 +14,16 @@ export const GlobalStyled = createGlobalStyle`
     background-color: #f5f5f5;
     color: #333;
   }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2;
+  }
 `
 
 export const Container = styled.div`
