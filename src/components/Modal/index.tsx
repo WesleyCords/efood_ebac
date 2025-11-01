@@ -1,5 +1,9 @@
 import type { MenuItem } from '../../types'
+
+import formatPrace from '../../utils/refactorPrace'
+
 import Tag from '../Button'
+
 import { ModalBackground, ModalContainer, ModalDescription } from './styled'
 
 type ModalProps = {
@@ -17,7 +21,9 @@ const Modal = ({ menu, view, evento }: ModalProps) => {
           <h2>{menu.nome}</h2>
           <p>{menu.descricao}</p>
           <p>Server: {menu.porcao}</p>
-          <Tag variant="secondary">Adicionar ao carrinho - {menu.preco}</Tag>
+          <Tag variant="secondary">
+            Adicionar ao carrinho - {formatPrace(menu.preco)}
+          </Tag>
         </ModalDescription>
       </ModalContainer>
     </ModalBackground>
