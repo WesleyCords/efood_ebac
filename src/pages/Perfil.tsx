@@ -35,12 +35,7 @@ const Perfil = () => {
       <Container>
         <Products gridThree>
           {restaurant?.cardapio.map((item) => (
-            <ItemPerfil
-              key={item.id}
-              nome={item.nome}
-              foto={item.foto}
-              descricao={item.descricao}
-            />
+            <ItemPerfil key={item.id} item={item} />
           ))}
         </Products>
       </Container>
