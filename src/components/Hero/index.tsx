@@ -2,8 +2,9 @@ import * as S from './styles'
 
 import logo from '../../assets/image/logo.svg'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { toggleCart } from '../../store/reducers/cartSlice'
+import type { RootState } from '../../store'
 
 type HeroProps = {
   view?: boolean
@@ -12,6 +13,8 @@ type HeroProps = {
 const Hero = ({ view }: HeroProps) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
+
+  const { items } = useSelector((state: RootState) => state.cart)
 
   const openCart = () => {
     dispatch(toggleCart())
@@ -30,7 +33,7 @@ const Hero = ({ view }: HeroProps) => {
         <>
           <span onClick={() => navigate('/')}>Restaurante</span>
           <img src={logo} alt="Efood" />
-          <span onClick={openCart}>0 produto(s) no carrinho</span>
+          <span onClick={openCart}>{items.length} produto(s) no carrinho</span>
         </>
       )}
     </S.HeroContainer>
