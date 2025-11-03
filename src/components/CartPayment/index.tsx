@@ -1,16 +1,26 @@
+import { useSelector } from 'react-redux'
 import Tag from '../Button'
 import Field from '../Field'
 import { CartAddressContainer } from './styled'
+import type { RootState } from '../../store'
+import formatPrace from '../../utils/refactorPrace'
+import type { MenuItem } from '../../types'
 
 type CartPaymentProps = {
   next: (step: number) => void
 }
 
 const CartPayment = ({ next }: CartPaymentProps) => {
+  const { items } = useSelector((state: RootState) => state.cart)
+
+  const getPraceTotal = (items: MenuItem[]) => {
+    return items.reduce((total, item) => total + item.preco, 0)
+  }
+
   return (
     <CartAddressContainer>
       <h2>
-        Pagamento - <span>R$ 100,00</span>
+        Pagamento - <span>{formatPrace(getPraceTotal(items))}</span>
       </h2>
       <Field type="text" label="Nome no cartão" />
       <div className="different-grid">
