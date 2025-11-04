@@ -34,9 +34,18 @@ export const HeroContainer = styled.section<StyledProps>`
   }
 `
 
+export const HeroPrimary = styled.div`
+  display: flex;
+  justify-content: space-between;
+  max-width: 1024px;
+  width: 100%;
+  align-items: center;
+`
+
 export const Title = styled.h1`
   font-size: 36px;
   font-weight: 900;
   width: 524px;
   text-align: center;
+  line-height: 42px;
 `

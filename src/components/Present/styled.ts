@@ -5,6 +5,7 @@ export const PresentContainer = styled.div`
   height: 280px;
   position: relative;
   color: #fff;
+  font-size: 32px;
 
   img {
     width: 100%;
@@ -21,18 +22,37 @@ export const PresentContainer = styled.div`
     position: absolute;
   }
 `
-export const Details = styled.div`
+export const ContainerDetails = styled.div`
+  max-width: 1024px;
+  width: 100%;
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  height: 100%;
+`
+
+export const Details = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 2;
+  padding: 32px 0;
+
+  h2 {
+    font-weight: 900;
+    font-style: black;
+  }
 
   h3 {
     color: #aaa;
-    font-weight: 400;
+    font-weight: 100;
+    font-style: thin;
   }
 `

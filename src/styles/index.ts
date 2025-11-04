@@ -25,6 +25,12 @@ export const GlobalStyled = createGlobalStyle`
     background: rgba(0, 0, 0, 0.7);
     z-index: 2;
   }
+
+  .container {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+  }
 `
 
 export const Container = styled.div`

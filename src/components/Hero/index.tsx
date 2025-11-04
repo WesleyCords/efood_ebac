@@ -26,15 +26,15 @@ const Hero = ({ view }: HeroProps) => {
         <>
           <img src={logo} alt="Efood" />
           <S.Title>
-            Viva experiências gastronômicasno conforto da sua casa
+            Viva experiências gastronômicas no conforto da sua casa
           </S.Title>
         </>
       ) : (
-        <>
+        <S.HeroPrimary>
           <span onClick={() => navigate('/')}>Restaurante</span>
           <img src={logo} alt="Efood" />
           <span onClick={openCart}>{items.length} produto(s) no carrinho</span>
-        </>
+        </S.HeroPrimary>
       )}
     </S.HeroContainer>
   )
