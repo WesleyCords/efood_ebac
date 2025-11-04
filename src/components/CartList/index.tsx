@@ -14,6 +14,8 @@ const ItemsList = () => {
     dispatch(removeItem(id))
   }
 
+  const totalPrice = items.reduce((acc, item) => acc + item.preco, 0)
+
   if (items.length === 0) {
     return <EmptyCart>Seu carrinho está vazio</EmptyCart>
   }
@@ -37,7 +39,7 @@ const ItemsList = () => {
           ))}
       </List>
       <TotalPrice>
-        price total: <span>R$ 100,00</span>
+        price total: <span>{formatPrace(totalPrice)}</span>
       </TotalPrice>
       <Tag variant="secondary" evento={() => dispatch(moveToNextStep(1))}>
         Continuar com a entrega
