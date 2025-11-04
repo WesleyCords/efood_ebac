@@ -1,15 +1,38 @@
 import { FieldContainer } from './styled'
 
 type FieldProps = {
-  label: string
   type: string
+  maxWidth?: string
+  change?: (e: React.ChangeEvent<HTMLInputElement>) => void
+  nameField?: string
+  label: string
+  value?: string
+  error?: string
+  blur?: (e: React.FocusEvent<HTMLInputElement>) => void
 }
 
-const Field = ({ label, type }: FieldProps) => {
+const Field = ({
+  type,
+  maxWidth,
+  change,
+  nameField,
+  label,
+  value,
+  error,
+  blur,
+}: FieldProps) => {
   return (
-    <FieldContainer>
-      <label htmlFor={label}>{label}</label>
-      <input type={type} id={label} />
+    <FieldContainer maxWidth={maxWidth}>
+      <label htmlFor={nameField}>{label}</label>
+      <input
+        type={type}
+        id={nameField}
+        name={nameField}
+        value={value}
+        onBlur={blur}
+        onChange={change}
+      />
+      <small>{error}</small>
     </FieldContainer>
   )
 }

@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from 'styled-components'
+import { Button } from '../components/Button/styled'
 
 export const GlobalStyled = createGlobalStyle`
   * {
@@ -30,4 +31,18 @@ export const Container = styled.div`
   max-width: 1024px;
   width: 100%;
   margin: 60px auto;
+`
+
+export const Row = styled.div`
+  display: flex;
+  gap: 16px;
+`
+
+export const RowButtons = styled.div`
+  display: block;
+  margin-top: 24px;
+
+  ${Button} {
+    margin-top: 8px;
+  }
 `

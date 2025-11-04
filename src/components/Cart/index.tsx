@@ -6,10 +6,12 @@ import type { RootState } from '../../store'
 import { moveToNextStep, toggleCart } from '../../store/reducers/cartSlice'
 import CartPayment from '../CartPayment'
 import CartConfimed from '../CartConfimed'
+import { formCheckout } from '../../hooks/useFormCheckout'
 
 const Cart = () => {
   const { open, cartStep } = useSelector((state: RootState) => state.cart)
   const dispatch = useDispatch()
+  const form = formCheckout()
 
   const openCart = () => {
     dispatch(toggleCart())
@@ -20,10 +22,20 @@ const Cart = () => {
       return <CartList />
     }
     if (cartStep === 1) {
-      return <CartAddress next={(step) => dispatch(moveToNextStep(step))} />
+      return (
+        <CartAddress
+          form={form}
+          next={(step) => dispatch(moveToNextStep(step))}
+        />
+      )
     }
     if (cartStep === 2) {
-      return <CartPayment next={(step) => dispatch(moveToNextStep(step))} />
+      return (
+        <CartPayment
+          form={form}
+          next={(step) => dispatch(moveToNextStep(step))}
+        />
+      )
     }
     if (cartStep === 3) {
       return <CartConfimed next={(step) => dispatch(moveToNextStep(step))} />
