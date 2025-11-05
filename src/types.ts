@@ -17,3 +17,33 @@ export type Restaurant = {
   capa: string
   cardapio: MenuItem[]
 }
+
+export type ProductItem = {
+  id: number
+  price: number
+}
+
+export type Checkout = {
+  products: ProductItem[]
+  delivery: {
+    receiver: string
+    address: {
+      description: string
+      city: string
+      zipCode: string
+      complement: string
+      number: number
+    }
+  }
+  payment: {
+    card: {
+      name: string
+      number: string
+      code: number
+      expires: {
+        month: number
+        year: number
+      }
+    }
+  }
+}

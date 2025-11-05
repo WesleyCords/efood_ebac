@@ -1,13 +1,17 @@
+import { useSelector } from 'react-redux'
 import Tag from '../Button'
+import type { RootState } from '../../store'
 
 type CartPaymentProps = {
   next: (step: number) => void
 }
 
 const CartConfimed = ({ next }: CartPaymentProps) => {
+  const { orderId } = useSelector((state: RootState) => state.cart)
+
   return (
     <div>
-      <h2>Pedido Realizao - 'Order_id'</h2>
+      <h2>Pedido Realizao - {orderId}</h2>
       <p>
         Estamos felizes em informar que seu pedido já está em processo de
         preparação e, em breve, será entregue no endereço fornecido. <br />{' '}

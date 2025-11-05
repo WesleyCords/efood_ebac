@@ -5,12 +5,14 @@ type CartState = {
   items: MenuItem[]
   open: boolean
   cartStep: number
+  orderId?: string
 }
 
 const initialState: CartState = {
   items: [],
   open: false,
   cartStep: 0,
+  orderId: undefined,
 }
 
 const cartSlice = createSlice({
@@ -36,9 +38,14 @@ const cartSlice = createSlice({
       }
       state.cartStep = action.payload
     },
+    addOrder: (state, action: PayloadAction<string>) => {
+      console.log(action.payload)
+      console.log('adicionando order id no state do redux')
+      state.orderId = action.payload
+    },
   },
 })
 
-export const { addItem, toggleCart, removeItem, moveToNextStep } =
+export const { addItem, toggleCart, removeItem, moveToNextStep, addOrder } =
   cartSlice.actions
 export default cartSlice.reducer

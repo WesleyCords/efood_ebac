@@ -1,10 +1,16 @@
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../store'
+import { usePostCheckoutMutation } from '../services/api'
+import { addOrder } from '../store/reducers/cartSlice'
 
 export const formCheckout = () => {
-  const { cartStep: step } = useSelector((state: RootState) => state.cart)
+  const { cartStep: step, items } = useSelector(
+    (state: RootState) => state.cart
+  )
+  const dispatch = useDispatch()
+  const [postCheckout] = usePostCheckoutMutation()
 
   const formSchema = useFormik({
     initialValues: {
@@ -57,8 +63,42 @@ export const formCheckout = () => {
         step === 2 ? schema.required('Campo obrigatório') : schema
       ),
     }),
-    onSubmit: (values) => {
-      console.log(values)
+    onSubmit: async (values) => {
+      if (items.length === 0) {
+        alert(
+          'O carrinho está vazio! Por favor adicione itens antes de finalizar o checkout.'
+        )
+        return
+      }
+      try {
+        const payload = await postCheckout({
+          products: items.map((item) => ({ id: item.id, price: item.preco })),
+          delivery: {
+            receiver: values.name,
+            address: {
+              description: values.address,
+              city: values.city,
+              zipCode: values.postalCode,
+              complement: values.complement,
+              number: Number(values.numberHouse),
+            },
+          },
+          payment: {
+            card: {
+              name: values.cardName,
+              number: values.cardNumber,
+              code: Number(values.cardCode),
+              expires: {
+                month: Number(values.cardExpiryMonth),
+                year: Number(values.cardExpiryYear),
+              },
+            },
+          },
+        })
+        dispatch(addOrder(payload.data.orderId))
+      } catch (error) {
+        console.error('Erro ao processar o checkout:', error)
+      }
     },
   })
 
