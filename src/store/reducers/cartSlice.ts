@@ -26,7 +26,6 @@ const cartSlice = createSlice({
       state.open = !state.open
     },
     removeItem: (state, action: PayloadAction<number>) => {
-      console.log(action.payload)
       state.items = state.items.filter((item) => item.id !== action.payload)
     },
     moveToNextStep: (state, action: PayloadAction<number>) => {
@@ -39,8 +38,6 @@ const cartSlice = createSlice({
       state.cartStep = action.payload
     },
     addOrder: (state, action: PayloadAction<string>) => {
-      console.log(action.payload)
-      console.log('adicionando order id no state do redux')
       state.orderId = action.payload
     },
   },

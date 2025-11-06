@@ -44,15 +44,17 @@ export const Details = styled.div`
   align-items: flex-start;
   z-index: 2;
   padding: 32px 0;
+  line-height: 100%;
 
   h2 {
     font-weight: 900;
-    font-style: black;
+    font-size: 32px;
   }
 
   h3 {
     color: #aaa;
-    font-weight: 100;
+    font-weight: 200;
     font-style: thin;
+    font-size: 32px;
   }
 `

@@ -12,6 +12,10 @@ export const ItemContainer = styled.div`
   justify-content: flex-start;
   gap: 8px;
 
+  h2 {
+    font-size: 16px;
+  }
+
   img {
     width: 100%;
     height: 167px;
@@ -25,4 +29,5 @@ export const Description = styled.p`
   font-weight: 400;
   line-height: 22px;
   margin-bottom: 8px;
+  min-height: 132px;
 `

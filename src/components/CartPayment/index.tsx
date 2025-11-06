@@ -19,6 +19,8 @@ const CartPayment = ({ next, form }: CartPaymentProps) => {
     return items.reduce((total, item) => total + item.preco, 0)
   }
 
+  const disableButton = !(form.isValid && form.dirty)
+
   return (
     <CartAddressContainer>
       <h2>
@@ -100,6 +102,7 @@ const CartPayment = ({ next, form }: CartPaymentProps) => {
           stepBack={() => {
             ;(next(3), form.handleSubmit())
           }}
+          disabled={disableButton}
         >
           Finalizar Pagamento
         </Tag>

@@ -7,6 +7,7 @@ type ButtonProps = {
   stepBack?: (step: number) => void
   step?: number
   isSubmit?: boolean
+  disabled?: boolean
 }
 
 const Tag = ({
@@ -16,6 +17,7 @@ const Tag = ({
   stepBack,
   step,
   isSubmit = false,
+  disabled,
 }: ButtonProps) => {
   const getFunction = () => {
     if (stepBack) {
@@ -29,6 +31,7 @@ const Tag = ({
       type={isSubmit ? 'submit' : 'button'}
       onClick={getFunction()}
       variant={variant}
+      disabled={disabled}
     >
       {children}
     </Button>

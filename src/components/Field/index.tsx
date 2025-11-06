@@ -22,7 +22,7 @@ const Field = ({
   blur,
 }: FieldProps) => {
   return (
-    <FieldContainer maxWidth={maxWidth}>
+    <FieldContainer error={error} maxWidth={maxWidth}>
       <label htmlFor={nameField}>{label}</label>
       <input
         type={type}
@@ -32,7 +32,6 @@ const Field = ({
         onBlur={blur}
         onChange={change}
       />
-      <small>{error}</small>
     </FieldContainer>
   )
 }

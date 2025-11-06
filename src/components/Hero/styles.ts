@@ -40,6 +40,7 @@ export const HeroPrimary = styled.div`
   max-width: 1024px;
   width: 100%;
   align-items: center;
+  font-weight: bold;
 `
 
 export const Title = styled.h1`

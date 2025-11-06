@@ -5,21 +5,25 @@ import Present from '../components/Present'
 import { Container } from '../styles'
 import { useParams } from 'react-router-dom'
 import { useGetMenuItemsByIdQuery } from '../services/api'
+import Loader from '../components/Loader'
 
 const Perfil = () => {
-  const { id } = useParams()
-  const { data: menu, error, isLoading } = useGetMenuItemsByIdQuery(id!)
-  console.log(typeof menu)
-
-  if (isLoading) {
-    return <p>Carregando...</p>
-  }
+  const { id } = useParams() as { id: string }
+  const { data: menu, error, isLoading } = useGetMenuItemsByIdQuery(id)
 
   if (error) {
     return <p>Erro ao carregar os dados.</p>
   }
 
   if (menu) {
+    if (isLoading) {
+      return (
+        <>
+          <Hero />
+          <Loader />
+        </>
+      )
+    }
     return (
       <>
         <Hero />
