@@ -1,4 +1,4 @@
-export type MenuItem = {
+declare type MenuItem = {
   foto: string
   preco: number
   id: number
@@ -7,7 +7,7 @@ export type MenuItem = {
   porcao: string
 }
 
-export type Restaurant = {
+declare type Restaurant = {
   id: number
   titulo: string
   destacado: boolean
@@ -18,12 +18,12 @@ export type Restaurant = {
   cardapio: MenuItem[]
 }
 
-export type ProductItem = {
+declare type ProductItem = {
   id: number
   price: number
 }
 
-export type Checkout = {
+declare type Checkout = {
   products: ProductItem[]
   delivery: {
     receiver: string

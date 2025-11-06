@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import type { Checkout, Restaurant } from '../types'
 
 const api = createApi({
   baseQuery: fetchBaseQuery({

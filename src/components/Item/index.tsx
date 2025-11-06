@@ -12,8 +12,6 @@ import {
 } from './styles'
 import Tag from '../Button'
 
-import type { Restaurant } from '../../types'
-
 type ItemProps = {
   dados: Restaurant | Restaurant[]
 }

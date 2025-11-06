@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux'
-import type { MenuItem } from '../../types'
 
 import formatPrace from '../../utils/refactorPrace'
 
