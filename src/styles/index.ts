@@ -52,3 +52,11 @@ export const RowButtons = styled.div`
     margin-top: 8px;
   }
 `
+export const Loader = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 18px;
+  font-weight: bold;
+`

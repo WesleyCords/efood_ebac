@@ -9,7 +9,7 @@ type CartAddressProps = {
 }
 
 const CartAddress = ({ next, form }: CartAddressProps) => {
-  const disableButton = !(form.isValid && form.dirty)
+  const disableButton = !form.isValid
   return (
     <CartAddressContainer>
       <h2>Entrega</h2>
@@ -44,7 +44,7 @@ const CartAddress = ({ next, form }: CartAddressProps) => {
       />
       <Row>
         <Field
-          type="number"
+          type="text"
           label="CEP"
           nameField="postalCode"
           value={form.values.postalCode}
@@ -54,6 +54,7 @@ const CartAddress = ({ next, form }: CartAddressProps) => {
               ? form.errors.postalCode
               : ''
           }
+          mask="00000-000"
           blur={form.handleBlur}
         />
         <Field

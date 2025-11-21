@@ -1,6 +1,5 @@
 import Tag from '../Button'
 import { ItemContainer, Description } from './styled'
-import type { MenuItem } from '../../types'
 import refactorDescription from '../../utils/refactorDescription'
 import Modal from '../Modal'
 import { useState } from 'react'

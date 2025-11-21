@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import Tag from '../Button'
 import type { RootState } from '../../store'
+import { Loader } from '../../styles'
 
 type CartPaymentProps = {
   next: (step: number) => void
@@ -9,6 +10,9 @@ type CartPaymentProps = {
 const CartConfimed = ({ next }: CartPaymentProps) => {
   const { orderId } = useSelector((state: RootState) => state.cart)
 
+  if (!orderId) {
+    return <Loader>Carregando...</Loader>
+  }
   return (
     <div>
       <h2>Pedido Realizao - {orderId}</h2>

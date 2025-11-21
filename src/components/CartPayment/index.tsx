@@ -5,7 +5,6 @@ import { CartAddressContainer } from './styled'
 import { Row, RowButtons } from '../../styles'
 import type { RootState } from '../../store'
 import formatPrace from '../../utils/refactorPrace'
-import type { MenuItem } from '../../types'
 
 type CartPaymentProps = {
   next: (step: number) => void
@@ -19,7 +18,8 @@ const CartPayment = ({ next, form }: CartPaymentProps) => {
     return items.reduce((total, item) => total + item.preco, 0)
   }
 
-  const disableButton = !(form.isValid && form.dirty)
+  const disableButton = !form.isValid
+  console.log(form.isValid)
 
   return (
     <CartAddressContainer>
@@ -51,6 +51,7 @@ const CartPayment = ({ next, form }: CartPaymentProps) => {
               ? form.errors.cardNumber
               : ''
           }
+          mask="0000 0000 0000 0000"
           blur={form.handleBlur}
         />
         <Field
@@ -65,6 +66,7 @@ const CartPayment = ({ next, form }: CartPaymentProps) => {
               ? form.errors.cardCode
               : ''
           }
+          mask="000"
           blur={form.handleBlur}
         />
       </Row>
@@ -80,6 +82,7 @@ const CartPayment = ({ next, form }: CartPaymentProps) => {
               ? form.errors.cardExpiryMonth
               : ''
           }
+          mask="00"
           blur={form.handleBlur}
         />
         <Field
@@ -93,6 +96,7 @@ const CartPayment = ({ next, form }: CartPaymentProps) => {
               ? form.errors.cardExpiryYear
               : ''
           }
+          mask="00"
           blur={form.handleBlur}
         />
       </Row>

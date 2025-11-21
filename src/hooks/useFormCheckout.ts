@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../store'
 import { usePostCheckoutMutation } from '../services/api'
 import { addOrder } from '../store/reducers/cartSlice'
+import { useEffect } from 'react'
 
 export const formCheckout = () => {
   const { cartStep: step, items } = useSelector(
@@ -27,41 +28,40 @@ export const formCheckout = () => {
       cardExpiryYear: '',
     },
     validationSchema: Yup.object({
-      name: Yup.string().when((_values, schema) =>
+      name:
         step === 1
-          ? schema
-              .min(5, 'O campo deve ter no minimo 5 caracteres')
-              .required('Campo obrigatório')
-          : schema
-      ),
-      address: Yup.string().when((_values, schema) =>
-        step === 1 ? schema.required('Campo obrigatório') : schema
-      ),
-      city: Yup.string().when((_values, schema) =>
-        step === 1 ? schema.required('Campo obrigatório') : schema
-      ),
-      postalCode: Yup.string().when((_values, schema) =>
-        step === 1 ? schema.required('Campo obrigatório') : schema
-      ),
-      numberHouse: Yup.string().when((_values, schema) =>
-        step === 1 ? schema.required('Campo obrigatório') : schema
-      ),
+          ? Yup.string()
+              .min(5, 'Mínimo de 5 caracteres')
+              .required('Obrigatório')
+          : Yup.string(),
+      address:
+        step === 1 ? Yup.string().min(5).required('Obrigatório') : Yup.string(),
+      city: step === 1 ? Yup.string().required('Obrigatório') : Yup.string(),
+      postalCode:
+        step === 1
+          ? Yup.string().min(8).max(10).required('Obrigatório')
+          : Yup.string(),
+      numberHouse:
+        step === 1 ? Yup.string().required('Obrigatório') : Yup.string(),
       complement: Yup.string(),
-      cardName: Yup.string().when((_values, schema) =>
-        step === 2 ? schema.required('Campo obrigatório') : schema
-      ),
-      cardNumber: Yup.string().when((_values, schema) =>
-        step === 2 ? schema.required('Campo obrigatório') : schema
-      ),
-      cardCode: Yup.string().when((_values, schema) =>
-        step === 2 ? schema.required('Campo obrigatório') : schema
-      ),
-      cardExpiryMonth: Yup.string().when((_values, schema) =>
-        step === 2 ? schema.required('Campo obrigatório') : schema
-      ),
-      cardExpiryYear: Yup.string().when((_values, schema) =>
-        step === 2 ? schema.required('Campo obrigatório') : schema
-      ),
+      cardName:
+        step === 2 ? Yup.string().min(5).required('Obrigatório') : Yup.string(),
+      cardNumber:
+        step === 2
+          ? Yup.string().min(16).max(19).required('Obrigatório')
+          : Yup.string(),
+      cardCode:
+        step === 2
+          ? Yup.string().min(3).max(3).required('Obrigatório')
+          : Yup.string(),
+      cardExpiryMonth:
+        step === 2
+          ? Yup.string().min(2).max(2).required('Obrigatório')
+          : Yup.string(),
+      cardExpiryYear:
+        step === 2
+          ? Yup.string().min(2).max(2).required('Obrigatório')
+          : Yup.string(),
     }),
     onSubmit: async (values) => {
       if (items.length === 0) {
@@ -100,7 +100,11 @@ export const formCheckout = () => {
         console.error('Erro ao processar o checkout:', error)
       }
     },
+    validateOnMount: true,
   })
+  useEffect(() => {
+    formSchema.validateForm()
+  }, [step])
 
   return formSchema
 }
